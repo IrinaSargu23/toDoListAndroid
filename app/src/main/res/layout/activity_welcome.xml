@@ -25,6 +25,7 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         android:textColor="@android:color/black" />
 
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">

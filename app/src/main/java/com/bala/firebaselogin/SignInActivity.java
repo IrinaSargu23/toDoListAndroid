@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -32,6 +33,7 @@ public class SignInActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        FirebaseApp.initializeApp(this);
         setContentView(R.layout.activity_sign_in);
 
         emailTextInput = findViewById(R.id.signInEmailTextInput);
@@ -73,22 +75,27 @@ public class SignInActivity extends AppCompatActivity {
                                         FirebaseUser user = mAuth.getCurrentUser();
 
                                         if (user != null) {
-                                            if (user.isEmailVerified()) {
-
-                                                
-                                                System.out.println("Email Verified : " + user.isEmailVerified());
-                                                Intent HomeActivity = new Intent(SignInActivity.this, MainActivity.class);
-                                                setResult(RESULT_OK, null);
-                                                startActivity(HomeActivity);
-                                                SignInActivity.this.finish();
-
-
-                                            } else {
-
-                                                sendVerifyMailAgainButton.setVisibility(View.VISIBLE);
-                                                errorView.setText("Please Verify your EmailID and SignIn");
-
-                                            }
+                                            System.out.println("Email Verified : " + user.isEmailVerified());
+                                            Intent HomeActivity = new Intent(SignInActivity.this, MainActivity.class);
+                                            setResult(RESULT_OK, null);
+                                            startActivity(HomeActivity);
+                                            SignInActivity.this.finish();
+//                                            if (user.isEmailVerified()) {
+//
+//
+//                                                System.out.println("Email Verified : " + user.isEmailVerified());
+//                                                Intent HomeActivity = new Intent(SignInActivity.this, MainActivity.class);
+//                                                setResult(RESULT_OK, null);
+//                                                startActivity(HomeActivity);
+//                                                SignInActivity.this.finish();
+//
+//
+//                                            } else {
+//
+//                                                sendVerifyMailAgainButton.setVisibility(View.VISIBLE);
+//                                                errorView.setText("Please Verify your EmailID and SignIn");
+//
+//                                            }
                                         }
 
                                     } else {
